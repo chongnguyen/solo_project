@@ -1,14 +1,19 @@
 import path from 'path';
-import express from 'express';
+import express, { json, urlencoded } from 'express';
 import morgan from 'morgan';
 import handlebars from 'express-handlebars';
+
+import router from './routers';
 
 const app = express();
 const port = 3000;
 
 // logger http
 app.use(morgan('combined'));
-
+app.use(urlencoded({
+  extended: true,
+}));
+app.use(json());
 
 // static folder
 console.log(path.join(__dirname, 'public'));
@@ -22,9 +27,7 @@ app.set('views', path.join(__dirname, '/resources/views'));
 
 
 // router 
-app.get('/', (req, res) => {
-  res.render('home');
-});
+router(app);
 
 // (ip - hostname)
 // 127.0.0.1 - localhost
