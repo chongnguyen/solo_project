@@ -1,6 +1,6 @@
-class newsController{
-  index(req, res){
-    res.render('news');
-  };
+class newsController {
+    index(req, res) {
+        res.render('news');
+    }
 }
-export default new newsController;
+export default new newsController();
